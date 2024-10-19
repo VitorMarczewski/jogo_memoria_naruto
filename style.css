@@ -1,0 +1,220 @@
+/* Resetando padrões do navegador */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'NarutoFont';
+    
+}
+
+/* Carregando a fonte personalizada Naruto */
+@font-face {
+    font-family: 'NarutoFont' ;
+    src: url('fontes/njnaruto.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estilo da página inicial */
+.paginaInicial {
+    width: 100vw;
+    min-height: 100vh;
+    background: url(img/tela_principal.png) no-repeat center/cover !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    height: 100%;
+    text-align: center;
+    color: white;
+}
+
+/* Título da página inicial */
+.paginaInicial h1 {
+    font-size: 3vw;
+    color: black;
+    margin-top: 5%;
+}
+
+/* Estilo dos botões */
+button {
+    width: 20vw;
+    height: 15vh;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 2vw;
+    background-color: #ff6600;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito de hover no botão */
+#paginaInicial button:hover {
+    background-color: #ff4500;
+}
+
+/* Estilo do corpo da página */
+body {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+    background: url(img/tela_jogo.jpg) no-repeat center/cover;
+}
+
+/* Animação do botão de play */
+.btn_play.clicado {
+    animation: pulsar .8s ease-in;
+}
+
+/* Estilo da área do jogo */
+#jogo {
+    position: relative;
+    display: none;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 65vw;
+    height: 75vh;
+    border-radius: 6%;
+    border: 1px solid rgba(0, 0, 0, 0.103);
+    background: transparent;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+}
+
+/* Estilo das cartas no jogo */
+.container {
+    position: relative;
+    width: 10%;
+    height: 29%;
+    perspective: 1000px;
+    margin: 1%;
+    border-radius: 10%;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.549);
+}
+
+/* Animação pulsante */
+.pulse {
+    animation: pulsar 1.5s ease-in-out 1 forwards;
+}
+
+@keyframes pulsar {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7), 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 1vh rgba(255, 255, 255, 0.5), 0 0 0 1vh rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 0 2vh rgba(255, 255, 255, 0), 0 0 0 2vh rgba(255, 255, 255, 0);
+    }
+}
+
+/* Estilo da carta */
+.flip {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+
+/* Efeito de flip nas cartas */
+.flip.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Estilos para as faces da carta */
+.frente, .tras {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.241);
+    backface-visibility: hidden;
+}
+
+.frente {
+    background: url(img/card.jpg) no-repeat center/cover;
+}
+
+.tras {
+    transform: rotateY(180deg);
+}
+
+/* Estilos para os diferentes personagens */
+#p1 { background: url(img/deidara.jpg) no-repeat center/cover; }
+#p2 { background: url(img/itachi.jpg) no-repeat top center/cover; }
+#p3 { background: url(img/jiraya.jpg) no-repeat center/cover; }
+#p4 { background: url(img/kakashi.jpg) no-repeat center/cover; }
+#p5 { background: url(img/naruto.jpg) no-repeat center/cover; }
+#p6 { background: url(img/neji.jpg) no-repeat center/cover; }
+#p7 { background: url(img/orochimaru.jpg) no-repeat center/cover; }
+#p8 { background: url(img/sabusa.jpg) no-repeat center/cover; }
+#p9 { background: url(img/sakura.jpg) no-repeat center/cover; }
+#p10 { background: url(img/sasuke.jpg) no-repeat center/cover; }
+#p11 { background: url(img/shikamaru.jpg) no-repeat center/cover; }
+#p12 { background: url(img/tobi.jpg) no-repeat center/cover; }
+
+/* Desativa as cartas já viradas */
+.desativarCarta, .parEncontrado {
+    pointer-events: none;
+}
+
+/* Estilo do cronômetro */
+#cronometro {
+    font-size: 3.5vw;
+    text-align: center;
+    font-weight: bolder;
+    display: none;
+    color: white;
+}
+
+/* Estilo do resultado final */
+#resultado {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 50vh;
+    display: none;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid rgba(255, 255, 255, 0.192);
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.592);
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+/* Estilo do placar no resultado */
+
+#resultado > h2 {
+    font-size: 5vw;
+
+}
+#resultado button{
+   opacity: 0;
+}
+/* Efeito de fade-out */
+.fade-out {
+    opacity: 0;
+    transition: opacity 2s ease-out;
+}
+
+@media screen and (orientation: portrait) {
+    /* Estilos para orientação paisagem */
+    body{
+        background: ;
+    }
+  }
